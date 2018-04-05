@@ -53,10 +53,21 @@ namespace Booking.Common.Http
 
         private async Task GetTokenAsync()
         {
-            var client = new TokenClient(
+           
+            TokenClient client;
+            if(_tokenInnerHandler ==null)
+            client = new TokenClient(
                 _settings.TokenEndpoint,
                 _settings.ClientId,
-                _settings.ClientSecret, _tokenInnerHandler);
+                _settings.ClientSecret);
+            else
+            {client = new TokenClient(
+                _settings.TokenEndpoint,
+                _settings.ClientId,
+                _settings.ClientSecret,_tokenInnerHandler);
+                
+            }
+
 
             var dictionary = new Dictionary<string, string>() {{"resource", _settings.Resource}};
             var response = await client.RequestClientCredentialsAsync(extra:
