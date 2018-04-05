@@ -1,6 +1,6 @@
 ﻿namespace Booking.Common.Http
 {
-    public class JwtClientSettings
+    public class JwtSettings
     {
 
         public string ClientId { get; set; }

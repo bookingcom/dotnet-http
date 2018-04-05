@@ -46,7 +46,7 @@ namespace Booking.Common.Http
 		{
 			
 		    string controller = this.GetType().Name.Replace("Client", "");
-		    HttpClient.BaseAddress = new Uri(System.IO.Path.Combine(baseAddress, controller));
+		    HttpClient.BaseAddress = new Uri(new Uri( baseAddress), controller);
 		}
 
 		public RestClient(HttpMessageHandler handler, string baseAddress)

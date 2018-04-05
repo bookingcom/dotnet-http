@@ -8,17 +8,24 @@ using IdentityModel.Client;
 
 namespace Booking.Common.Http
 {
-    public class JwtClient : HttpClient
+    public class JwtDelegatingHandler : DelegatingHandler
     {
-        private readonly JwtClientSettings _settings;
+        private readonly JwtSettings _settings;
+        private readonly DelegatingHandler _tokenInnerHandler;
         private TokenResponse _token;
         
-        public JwtClient(JwtClientSettings settings )
+        public JwtDelegatingHandler(JwtSettings settings, DelegatingHandler tokenInnerHandler,DelegatingHandler innerHandler):base(innerHandler)
         {
             _settings = settings;
+            _tokenInnerHandler = tokenInnerHandler;
         }
 
-        public override  async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        public JwtDelegatingHandler(JwtSettings settings) : base()
+        {_settings = settings;
+           
+        }
+
+        protected override  async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             if (this._token==null)
             {
@@ -49,7 +56,7 @@ namespace Booking.Common.Http
             var client = new TokenClient(
                 _settings.TokenEndpoint,
                 _settings.ClientId,
-                _settings.ClientSecret);
+                _settings.ClientSecret, _tokenInnerHandler);
 
             var dictionary = new Dictionary<string, string>() {{"resource", _settings.Resource}};
             var response = await client.RequestClientCredentialsAsync(extra:
