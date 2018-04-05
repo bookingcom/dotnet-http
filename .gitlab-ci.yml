@@ -11,6 +11,8 @@ build:
     - docker
   script: 
      - /root/dotnet/dotnet build
+     - cd UnitTest
+     - /root/dotnet/dotnet test UnitTest.csproj
 
 
 deploy-nuget:
