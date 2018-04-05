@@ -5,17 +5,17 @@ using System.Threading.Tasks;
 
 namespace Booking.Common.Http
 {
-    public abstract class RestClient<TResponse> : RestClient<TResponse, string, object>
+	public abstract class RestClient<TResponse> : RestClient<TResponse, string, object>
 	{
 		public RestClient(string baseAddress)
 			: base(baseAddress)
 		{
 		}
-	    public RestClient(HttpClient client,string baseAddress):base(client,baseAddress)
-	    {
-			
-	      
-	    }
+		public RestClient(HttpClient client, string baseAddress) : base(client, baseAddress)
+		{
+
+
+		}
 
 		public RestClient(HttpClient client)
 			: base(client)
@@ -42,17 +42,16 @@ namespace Booking.Common.Http
 		{
 			HttpClient = client;
 		}
-	    public RestClient(HttpClient client,string baseAddress):this(client)
+		public RestClient(HttpClient client, string baseAddress) : this(client)
 		{
-			
-		    string controller = this.GetType().Name.Replace("Client", "");
-		    HttpClient.BaseAddress = new Uri(new Uri( baseAddress), controller);
+			string controller = this.GetType().Name.Replace("Client", "/");
+			HttpClient.BaseAddress = new Uri(new Uri(baseAddress), controller);
 		}
 
 		public RestClient(HttpMessageHandler handler, string baseAddress)
-			: this(new HttpClient(handler),baseAddress)
+			: this(new HttpClient(handler), baseAddress)
 		{
-		
+
 		}
 
 		public virtual Task<IEnumerable<TResponse>> GetAsync()
