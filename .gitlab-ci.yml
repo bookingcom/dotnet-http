@@ -3,14 +3,15 @@ stages:
 #   - build
    - deploy
   
-build:
-  stage: build
-  tags:
-    - docker
-  script: 
-     - /root/dotnet/dotnet build
-     - cd UnitTest
-     - /root/dotnet/dotnet test UnitTest.csproj
+#build:
+#  stage: build
+#  tags:
+#    - docker
+#  script: 
+#     - /root/dotnet/dotnet build
+#     - cd UnitTest
+#     - /root/dotnet/dotnet test UnitTest.csproj
+
 
 deploy-nuget:
   stage: deploy
