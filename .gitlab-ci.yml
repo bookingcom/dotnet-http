@@ -3,8 +3,6 @@ stages:
    - build
    - deploy
   
- 
- 
 build:
   stage: build
   tags:
@@ -13,7 +11,6 @@ build:
      - /root/dotnet/dotnet build
      - cd UnitTest
      - /root/dotnet/dotnet test UnitTest.csproj
-
 
 deploy-nuget:
   stage: deploy
@@ -30,8 +27,5 @@ deploy-nuget:
   
         done
     - wait
-            
-
-  
-   
+    
   environment: production
