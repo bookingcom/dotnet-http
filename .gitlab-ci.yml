@@ -1,6 +1,6 @@
 image: docker-registry.booking.com/itsba/azure-deploy
 stages:
-   - build
+#   - build
    - deploy
   
 build:
@@ -25,5 +25,3 @@ deploy-nuget:
             /root/dotnet/dotnet nuget push $fn -k "4d0eae47-22b8-3c85-8b1c-b9bba1b1de36" -s https://nexus.booking.com/nexus/service/local/nuget/nuget-releases/ &
       done
     - wait
-    
-  environment: production
