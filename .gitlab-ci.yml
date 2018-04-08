@@ -23,7 +23,8 @@ deploy-nuget:
     
     - $date=Get-Date -format yyyy.M.dHHmm
     - $replacedPackageValue="<PackageVersion>1."+$date+"</PackageVersion>"
-    - $contentsOfFile=(Get-Content ".\Booking.Common.Http.csproj").replace('<PackageVersion>1.0.0</PackageVersion>', $replacedPackageValue) | set-content | .\Booking.Common.Http.csproj
+    - $contentsOfFile=(Get-Content ".\Booking.Common.Http.csproj").replace('<PackageVersion>1.0.0</PackageVersion>', $replacedPackageValue) 
+    - $contentsOfFile | Set-Content ".\Booking.Common.Http.csproj"
 
     - dotnet pack ".\Booking.Common.Http.csproj" --configuration Release --output c:\temp
     - cd c:\temp
