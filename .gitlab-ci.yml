@@ -20,7 +20,7 @@ deploy-nuget:
     - win-ps
   script: 
     - cd Booking.Common.Http
-    - mkdir c:\temp\
+    
     - $date=Get-Date -format yyyy.M.dHHmm
     - $replacedPackageValue="<PackageVersion>1."+$date+"</PackageVersion>"
     - $contentsOfFile=(Get-Content "Booking.Common.Http.csproj").replace('<PackageVersion>1.0.0</PackageVersion>', $replacedPackageValue) | set-content | Booking.Common.Http.csproj
