@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -72,7 +73,12 @@ namespace Booking.Common.Http
             var dictionary = new Dictionary<string, string>() {{"resource", _settings.Resource}};
             var response = await client.RequestClientCredentialsAsync(extra:
                 dictionary);
+            
             _token = response;
+            if (!string.IsNullOrEmpty(_token.ErrorDescription))
+            {
+                throw new Exception(_token.ErrorDescription);
+            }
         }
     }
 }
