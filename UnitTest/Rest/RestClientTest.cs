@@ -9,13 +9,13 @@ namespace UnitTest.Rest
         public void BaseAddressTest()
         {
             var restAddress = new MockRestClient("http://bob.co.za");
-            Assert.AreEqual("http://bob.co.za/MockRest", restAddress.BaseAddress);
+            Assert.AreEqual("http://bob.co.za/MockRest/", restAddress.BaseAddress);
         }
         [TestMethod]
         public void BaseAddressTest1()
         {
             var restAddress = new MockRestClient("http://bob.co.za/");
-            Assert.AreEqual("http://bob.co.za/MockRest", restAddress.BaseAddress);
+            Assert.AreEqual("http://bob.co.za/MockRest/", restAddress.BaseAddress);
         }
     }
 }

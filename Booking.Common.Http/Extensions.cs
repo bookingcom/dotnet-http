@@ -18,6 +18,10 @@ namespace Booking.Common.Http
 			{
 				return default(T);
 			}
+			else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+			{
+				throw new HttpRequestException(await response.Content.ReadAsStringAsync());
+			}
 			response.EnsureSuccessStatusCode();
 			var result = await response.Content.ReadAsync<T>();
 			return result;
