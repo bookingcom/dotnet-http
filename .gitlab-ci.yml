@@ -6,9 +6,9 @@ stages:
 build:
   stage: build
   tags:
-    - win-ps
+    - docker
   script: 
-     - dotnet build Booking.Common.HttpClient.Extensions/Booking.Common.HttpClient.Extensions.csproj
+     - dotnet build
      - cd UnitTest
      - dotnet test UnitTest.csproj
 
