@@ -6,11 +6,11 @@ stages:
 build:
   stage: build
   tags:
-    - docker
+    - win-ps
   script: 
-     - /root/dotnet/dotnet build
+     - dotnet build
      - cd UnitTest
-     - /root/dotnet/dotnet test UnitTest.csproj
+     - dotnet test UnitTest.csproj
 
 
 deploy-nuget:
