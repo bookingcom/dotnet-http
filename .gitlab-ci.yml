@@ -8,7 +8,7 @@ build:
   tags:
     - win-ps
   script: 
-     - dotnet build
+     - dotnet build Booking.Common.HttpClient.Extensions/Booking.Common.HttpClient.Extensions.csproj
      - cd UnitTest
      - dotnet test UnitTest.csproj
 
