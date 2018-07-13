@@ -18,7 +18,7 @@ deploy-nuget:
   tags:
     - docker 
   script: 
-    - 
+    
     - mkdir /root/nupkgs
     - /root/dotnet/dotnet pack Booking.Common.Rest/Booking.Common.Rest.csproj --configuration Release --output /root/nupkgs /p:PackageVersion="1.$(date -d 'now' '+%Y.%m.%d%H%M')"
     - /root/dotnet/dotnet pack Booking.Common.HttpClient.Extensions/Booking.Common.HttpClient.Extensions.csproj --configuration Release --output /root/nupkgs /p:PackageVersion="1.$(date -d 'now' '+%Y.%m.%d%H%M')"
