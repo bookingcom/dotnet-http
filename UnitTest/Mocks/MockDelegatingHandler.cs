@@ -2,8 +2,9 @@ using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using Booking.Common.Rest;
 
-namespace UnitTest
+namespace UnitTest.Mocks
 {
     public class MockDelegatingHandler: DelegatingHandler
     {
@@ -41,7 +42,7 @@ namespace UnitTest
             return Task.FromResult(new HttpResponseMessage(_status){Content =new StringContent(_response)});
         }
     }
-    public class MockRestClient : Booking.Common.Http.RestClient<string>
+    public class MockRestClient : RestClient<string>
     {
         public MockRestClient(string baseAddress) : base(baseAddress)
         {

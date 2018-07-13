@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+
+		<PackageId>Booking.Common.Rest</PackageId>
+		<PackageVersion>1.0.0</PackageVersion>
+		<Authors>Booking.com BV </Authors>
+		<Description>Generic Rest Client and JWT token delegating handler</Description>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<PackageReleaseNotes>First release</PackageReleaseNotes>
+		<Copyright>Copyright 2018 (c) Booking.com. All rights reserved.</Copyright>
+		<PackageTags>HTTP, Booking.com, HTTPClient, JWT Token, JWT Delegating Handler </PackageTags>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="IdentityModel" Version="3.3.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Booking.Common.HttpClient.Extensions\Booking.Common.HttpClient.Extensions.csproj" />
+	</ItemGroup>
+
+</Project>

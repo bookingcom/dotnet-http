@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Booking.Common.HttpClient.Extensions;
 
-namespace Booking.Common.Http
+namespace Booking.Common.Rest
 {
 	public abstract class RestClient<TResponse> : RestClient<TResponse, string, object>
 	{
@@ -11,14 +12,14 @@ namespace Booking.Common.Http
 			: base(baseAddress)
 		{
 		}
-		public RestClient(HttpClient client, string baseAddress)
+		public RestClient(System.Net.Http.HttpClient client, string baseAddress)
 			: base(client, baseAddress)
 		{
 
 
 		}
 
-		public RestClient(HttpClient client)
+		public RestClient(System.Net.Http.HttpClient client)
 			: base(client)
 		{
 		}
@@ -37,12 +38,12 @@ namespace Booking.Common.Http
 		{
 		}
 
-		public RestClient(HttpClient client)
+		public RestClient(System.Net.Http.HttpClient client)
 			: base(client)
 		{
 		}
 
-		public RestClient(HttpClient client, string baseAddress)
+		public RestClient(System.Net.Http.HttpClient client, string baseAddress)
 			: base(client, baseAddress)
 		{
 		}
@@ -75,7 +76,7 @@ namespace Booking.Common.Http
 
 	public abstract class RestClient : IRestClient
 	{
-		protected HttpClient HttpClient { get; }
+		protected System.Net.Http.HttpClient HttpClient { get; }
 
 		public RestClient(string baseAddress)
 			: this(new HttpClientHandler(), baseAddress)
@@ -83,18 +84,18 @@ namespace Booking.Common.Http
 
 		}
 
-		public RestClient(HttpClient client)
+		public RestClient(System.Net.Http.HttpClient client)
 		{
 			HttpClient = client;
 		}
-		public RestClient(HttpClient client, string baseAddress) : this(client)
+		public RestClient(System.Net.Http.HttpClient client, string baseAddress) : this(client)
 		{
 			string controller = this.GetType().Name.Replace("Client", "/");
 			HttpClient.BaseAddress = new Uri(new Uri(baseAddress), controller);
 		}
 
 		public RestClient(HttpMessageHandler handler, string baseAddress)
-			: this(new HttpClient(handler), baseAddress)
+			: this(new System.Net.Http.HttpClient(handler), baseAddress)
 		{
 
 		}

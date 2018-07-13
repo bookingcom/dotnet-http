@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using IdentityModel.Client;
 
-namespace Booking.Common.Http
+namespace Booking.Common.Rest
 {
 	public class JwtDelegatingHandler : DelegatingHandler
 	{

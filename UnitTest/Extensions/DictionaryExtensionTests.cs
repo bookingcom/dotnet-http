@@ -1,13 +1,8 @@
-using System;
 using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
-using Booking.Common.Http;
+using Booking.Common.HttpClient.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using NSubstitute;
-
-namespace UnitTest
+namespace UnitTest.Extensions
 {
     [TestClass]
     public class DictionaryExtensionTests

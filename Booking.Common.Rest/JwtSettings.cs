@@ -1,4 +1,4 @@
-﻿namespace Booking.Common.Http
+﻿namespace Booking.Common.Rest
 {
     public class JwtSettings
     {

@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Booking.Common.Http
+namespace Booking.Common.Rest
 {
 	public interface IRestClient
 	{

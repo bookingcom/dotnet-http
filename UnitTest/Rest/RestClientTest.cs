@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using UnitTest.Mocks;
 
 namespace UnitTest.Rest
 {

@@ -1,17 +1,17 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
-namespace Booking.Common.Http
+namespace Booking.Common.HttpClient.Extensions
 {
 	public static class Extensions
 	{
 		private const string MediaType = "application/json";
 
-		public static async Task<T> GetAsync<T>(this HttpClient client, string uri)
+		public static async Task<T> GetAsync<T>(this System.Net.Http.HttpClient client, string uri)
 		{
 			var response = await client.GetAsync(uri);
 			if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
@@ -27,22 +27,22 @@ namespace Booking.Common.Http
 			return result;
 		}
 
-		public static Task<T> GetAsync<T>(this HttpClient client)
+		public static Task<T> GetAsync<T>(this System.Net.Http.HttpClient client)
 		{
 			return client.GetAsync<T>(string.Empty);
 		}
 
-		public static Task<T> PostAsync<T>(this HttpClient httpClient, object data)
+		public static Task<T> PostAsync<T>(this System.Net.Http.HttpClient httpClient, object data)
 		{
 			return httpClient.PostAsync<T>(string.Empty, data);
 		}
 
-		public static Task<T> PostAsync<T>(this HttpClient httpClient)
+		public static Task<T> PostAsync<T>(this System.Net.Http.HttpClient httpClient)
 		{
 			return httpClient.PostAsync<T>(new { });
 		}
 
-		public static async Task<T> PostAsync<T>(this HttpClient httpClient, string url, object data)
+		public static async Task<T> PostAsync<T>(this System.Net.Http.HttpClient httpClient, string url, object data)
 		{
 			var responseMessage = await httpClient.PostAsync(url, data);
 			responseMessage.EnsureSuccessStatusCode();
@@ -50,18 +50,18 @@ namespace Booking.Common.Http
 			return result;
 		}
 
-		public static async Task<HttpResponseMessage> PostAsync(this HttpClient httpClient, string url, object data)
+		public static async Task<HttpResponseMessage> PostAsync(this System.Net.Http.HttpClient httpClient, string url, object data)
 		{
 			var responseMessage = await httpClient.PostAsync(url, data.ToJsonContent());
 			return responseMessage;
 		}
 
-		public static Task<T> PutAsync<T>(this HttpClient httpClient, object data)
+		public static Task<T> PutAsync<T>(this System.Net.Http.HttpClient httpClient, object data)
 		{
 			return httpClient.PutAsync<T>(string.Empty, data);
 		}
 
-		public static async Task<T> PutAsync<T>(this HttpClient httpClient, string url, object data)
+		public static async Task<T> PutAsync<T>(this System.Net.Http.HttpClient httpClient, string url, object data)
 		{
 			var responseMessage = await httpClient.PutAsync(url, data);
 			responseMessage.EnsureSuccessStatusCode();
@@ -69,7 +69,7 @@ namespace Booking.Common.Http
 			return result;
 		}
 
-		public static async Task<HttpResponseMessage> PutAsync(this HttpClient httpClient, string url, object data)
+		public static async Task<HttpResponseMessage> PutAsync(this System.Net.Http.HttpClient httpClient, string url, object data)
 		{
 			var responseMessage = await httpClient.PutAsync(url, data.ToJsonContent());
 			return responseMessage;

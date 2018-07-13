@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
-using Booking.Common.Http;
+using Booking.Common.Rest;
 using IdentityModel.Client;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using UnitTest.Mocks;
 
 namespace UnitTest.Rest
 {

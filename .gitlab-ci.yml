@@ -18,10 +18,11 @@ deploy-nuget:
   tags:
     - docker 
   script: 
-    - cd Booking.Common.Http
+    - 
     - mkdir /root/nupkgs
-    - /root/dotnet/dotnet pack Booking.Common.Http.csproj --configuration Release --output /root/nupkgs /p:PackageVersion="1.$(date -d 'now' '+%Y.%m.%d%H%M')"
+    - /root/dotnet/dotnet pack Booking.Common.Rest/Booking.Common.Rest.csproj --configuration Release --output /root/nupkgs /p:PackageVersion="1.$(date -d 'now' '+%Y.%m.%d%H%M')"
+    - /root/dotnet/dotnet pack Booking.Common.HttpClient.Extensions/Booking.Common.HttpClient.Extensions.csproj --configuration Release --output /root/nupkgs /p:PackageVersion="1.$(date -d 'now' '+%Y.%m.%d%H%M')"
     - for fn in `find /root/nupkgs/ -name "*.nupkg"`; do
-            /root/dotnet/dotnet nuget push $fn -k "$NUGET_KEY" -s https://nexus.booking.com/nexus/service/local/nuget/nuget-releases/ &
+            /root/dotnet/dotnet nuget push $fn -k $PUBLICNUGETKEY -s https://api.nuget.org/v3/index.json &
       done
     - wait
