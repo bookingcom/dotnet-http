@@ -21,10 +21,9 @@ namespace Booking.Common.Rest
 			_tokenInnerHandler = tokenInnerHandler;
 		}
 
-		public JwtDelegatingHandler(JwtSettings settings) :base(new HttpClientHandler())
+		public JwtDelegatingHandler(JwtSettings settings) : base(new HttpClientHandler())
 		{
 			_settings = settings;
-
 		}
 
 		protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
@@ -45,12 +44,10 @@ namespace Booking.Common.Rest
 			return httpResponse;
 		}
 
-		private async Task<HttpResponseMessage> ExecuteRequestAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+		private Task<HttpResponseMessage> ExecuteRequestAsync(HttpRequestMessage request, CancellationToken cancellationToken)
 		{
 			request.Headers.Authorization = new AuthenticationHeaderValue(_token.TokenType, _token.AccessToken);
-
-			var httpResponse = await base.SendAsync(request, cancellationToken);
-			return httpResponse;
+			return base.SendAsync(request, cancellationToken);
 		}
 
 		private async Task GetTokenAsync()
@@ -74,15 +71,18 @@ namespace Booking.Common.Rest
 			}
 
 
-            var dictionary = new Dictionary<string, string>() {{"resource", _settings.Resource}};
-            var response = await client.RequestClientCredentialsAsync(extra:
-                dictionary);
-            
-            _token = response;
-            if (!string.IsNullOrEmpty(_token.ErrorDescription))
-            {
-                throw new Exception(_token.ErrorDescription);
-            }
-        }
-    }
+			var dictionary = new Dictionary<string, string>()
+			{
+				{ "resource", _settings.Resource }
+			};
+
+			var response = await client.RequestClientCredentialsAsync(extra: dictionary);
+
+			_token = response;
+			if (!string.IsNullOrEmpty(_token.ErrorDescription))
+			{
+				throw new Exception(_token.ErrorDescription);
+			}
+		}
+	}
 }

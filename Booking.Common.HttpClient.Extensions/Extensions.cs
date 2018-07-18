@@ -50,10 +50,9 @@ namespace Booking.Common.HttpClient.Extensions
 			return result;
 		}
 
-		public static async Task<HttpResponseMessage> PostAsync(this System.Net.Http.HttpClient httpClient, string url, object data)
+		public static Task<HttpResponseMessage> PostAsync(this System.Net.Http.HttpClient httpClient, string url, object data)
 		{
-			var responseMessage = await httpClient.PostAsync(url, data.ToJsonContent());
-			return responseMessage;
+			return httpClient.PostAsync(url, data.ToJsonContent());
 		}
 
 		public static Task<T> PutAsync<T>(this System.Net.Http.HttpClient httpClient, object data)
@@ -69,10 +68,9 @@ namespace Booking.Common.HttpClient.Extensions
 			return result;
 		}
 
-		public static async Task<HttpResponseMessage> PutAsync(this System.Net.Http.HttpClient httpClient, string url, object data)
+		public static Task<HttpResponseMessage> PutAsync(this System.Net.Http.HttpClient httpClient, string url, object data)
 		{
-			var responseMessage = await httpClient.PutAsync(url, data.ToJsonContent());
-			return responseMessage;
+			return httpClient.PutAsync(url, data.ToJsonContent());
 		}
 
 		public static StringContent ToJsonContent(this object model)
