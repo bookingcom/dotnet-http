@@ -6,7 +6,7 @@ stages:
 build:
   stage: build
   tags:
-    - doker
+    - docker
   script: 
      - /root/dotnet/dotnet build
      - cd UnitTest
