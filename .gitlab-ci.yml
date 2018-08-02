@@ -24,5 +24,6 @@ deploy-nuget:
     - /root/dotnet/dotnet pack Booking.Common.HttpClient.Extensions/Booking.Common.HttpClient.Extensions.csproj --configuration Release --output /root/nupkgs /p:PackageVersion="1.$(date -d 'now' '+%Y.%m.%d%H%M')"
     - for fn in `find /root/nupkgs/ -name "*.nupkg"`; do
             /root/dotnet/dotnet nuget push $fn -k $PUBLICNUGETKEY -s https://api.nuget.org/v3/index.json &
+            /root/dotnet/dotnet nuget push $fn -k "$NUGET_KEY" -s https://nexus.booking.com/nexus/service/local/nuget/nuget-releases/ &
       done
     - wait
