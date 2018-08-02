@@ -37,6 +37,12 @@ namespace Booking.Common.HttpClient.Extensions
 			return httpClient.PostAsync<T>(string.Empty, data);
 		}
 
+		public static Task<HttpResponseMessage> PostAsync(this System.Net.Http.HttpClient httpClient, object data)
+		{
+			return httpClient.PostAsync(string.Empty, data.ToJsonContent());
+		}
+
+
 		public static Task<T> PostAsync<T>(this System.Net.Http.HttpClient httpClient)
 		{
 			return httpClient.PostAsync<T>(new { });
