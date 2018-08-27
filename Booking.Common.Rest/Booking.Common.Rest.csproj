@@ -6,21 +6,15 @@
 		<PackageId>Booking.Common.Rest</PackageId>
 		<PackageVersion>1.0.0</PackageVersion>
 		<Authors>Booking.com BV </Authors>
-		<Description>Generic Rest Client and JWT token delegating handler</Description>
+		<Description>Generic Rest Client</Description>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 		<PackageReleaseNotes>First release</PackageReleaseNotes>
 		<Copyright>Copyright 2018 (c) Booking.com. All rights reserved.</Copyright>
-		<PackageTags>HTTP, Booking.com, HTTPClient, JWT Token, JWT Delegating Handler </PackageTags>
+		<PackageTags>HTTP, Booking.com, HTTPClient</PackageTags>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="IdentityModel" Version="3.8.0" />
-
-		<PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\Booking.Common.HttpClient.Extensions\Booking.Common.HttpClient.Extensions.csproj" />
+		<ProjectReference Include="..\Booking.Common.HttpClient.Extensions\Booking.Common.HttpClient.Extensions.csproj" />
 	</ItemGroup>
 
 </Project>
